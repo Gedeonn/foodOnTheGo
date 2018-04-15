@@ -152,7 +152,7 @@ function num()
 
       $bill = $totalPrice + $bill;
     }
-    session_start();
+//removed the repeated session
     if (!empty($_SESSION['login']))
     {
     echo "Welcome ".$_SESSION['name']."! &nbsp&nbsp&nbsp Total Items: " . $count . "&nbsp&nbsp&nbsp Total Price: GHS ". $bill. ".00";
@@ -202,19 +202,18 @@ function viewCart()
      echo '
      <form method="POST">
      <div class = "cart-items">
-     <tr>
-
-            <td><img class="card-img-top" style="width:75px; height:75px;"src="../'.$image.'" alt="Product Image"></td>
-            <td>'.$title.'</td>
-            <td><input name="number" type="number" value="'.$qty.'" min="1" max="100">
-            <button name="updatebutton" class="btn btn-primary" value='.$id.'>Update</button>
-            <button name="deletecart" class="btn btn-danger" value='.$id.'>Remove Item</button></td>
-            </form>
-            <td>'.number_format($price,2).'</td>
-            <td>'.number_format($totalprice,2).'</td>
-            <td><button name="order" class="btn btn-danger" value= '.$title.'>Order</button></td>
-            </tr>
-            </div>';
+        <tr>
+                <td><img class="card-img-top" style="width:75px; height:75px;"src="../'.$image.'" alt="Product Image"></td>
+                <td>'.$title.'</td>
+                <td><input name="number" type="number" value="'.$qty.'" min="1" max="100">
+                <button name="updatebutton" class="btn btn-primary" value='.$id.'>Update</button>
+                <button name="deletecart" class="btn btn-danger" value='.$id.'>Remove Item</button></td>
+                </form>
+                <td>'.number_format($price,2).'</td>
+                <td>'.number_format($totalprice,2).'</td>
+                <td><a href="payment.php?price='.$totalprice.'&priceT='.$price.'&id='.$id.'&pTitle='.$title.'&qty='.$qty.'&img='.$image.'"><button name="order" class="btn btn-danger" value= '.$title.'>CheckOut</button></a></td>
+          </tr>
+    </div>';
 
      /* echo '
       <form method="post">
@@ -233,6 +232,69 @@ function viewCart()
   }
 #  echo $answer;
 }
+
+//function to get items from cart
+function viewCart1()
+{
+
+      //display cart items in a table
+      $title=$_GET['pTitle'];
+      $totalprice = $_GET['price'];
+      $image= $_GET['img'];
+      $id = $_GET['id'];
+      $qty = $_GET['qty'];
+      $price = $_GET['priceT'];
+
+
+     echo '
+     <form method="POST">
+     <div class= "cart-items">
+      
+     <tr>
+
+            <td><img class="card-img-top" style="width:75px; height:75px;"src="../'.$image.'" alt="Product Image">
+            '.$title.'
+            </td>|
+          
+            <td>  <input name="number" type="number" value="'.$qty.'" min="1" max="100"> </td>|
+            
+            <td>'.number_format($price,2).'</td> |
+            <td>'.number_format($totalprice,2).'</td>
+            <td>|
+                  
+              <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+
+                <input type="hidden" name="business" value="healthonthego@gmail.com">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="item_name" value="Premium Umbrella">
+                <input type="hidden" name="amount" value='.$totalprice.'>
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="image" name="submit" border="0"
+                src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+                alt="Buy Now">
+                <img alt="" border="0" width="1" height="1"
+                src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif">
+              </form>
+            </td>
+            </tr>
+            </div>';
+
+     /* echo '
+      <form method="post">
+        <div class="grid-item">
+  <a href="views.php"><img src="../'.$row['image'].'"></a><br>
+  <a href="views.php">' .$row['food_name']. '</a><br><br>
+            <p>Quantity = <br><br><br>
+            <input type="number" min="1" value='.$qty.' style="width:30px;" name="number">
+            <button name="updatebutton" value='.$id.'>Update</button></p>
+            '.'<p>Unit price = GHS ' .$row['price'].'.00</p>'.'  <br>
+              <p>Total Price = GHS '.$row['price'] * $qty.'.00</p>
+              <button value="'.$id.'" name="deletecart">Remove </button>
+ </div>
+  </form>';*/
+    }
+ 
+
 
 if(isset($_POST['updatebutton']))
 {
@@ -369,7 +431,12 @@ function validatelogin()
     $_SESSION['name'] = $results['f_name'];
     $_SESSION['email'] = $email;
     $_SESSION['login'] = true;
-    header("location: ../index.php");
+    if(isset($_SESSION['cart'])){
+      header("location: cart.php");
+    }else{
+      header("location: ../index.php");
+    }
+    
   }
 }
 

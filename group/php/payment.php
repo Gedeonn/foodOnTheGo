@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION['login'])) {
+  echo "You will login first";
+      $_SESSION['cart'] = 1;
+      header("location:login.php");
+  }
+?>
 <!DOCTYPE html>
 <html>
 <header>
@@ -7,6 +15,7 @@
 <head>
   <!-- include stylesheet -->
   <link rel="stylesheet" type="text/css" href="../css/lab2.css">
+  <link rel="stylesheet" type="text/css" href="../css/payment.css">
   <title>Payment</title>
 </head>
 <body>
@@ -35,14 +44,14 @@
     <!-- div to position text in breadcrumb -->
     <div class="breadcrumbtext"> 
        <form method="POST">
-      ?php
+      <?php
       require_once('productFunctions.php');
       num();
-      ?
+      ?>
       <!-- make shopping cart image a link -->
        <a href="cart.php"><img src="../images/shopping-cart.png" alt="Cart" width="25px" height="25px"></a> 
        <a href="../index.php">Continue Shopping </a> &nbsp&nbsp&nbsp 
-
+       <?php viewCart1(); ?>
       <!-- <input type="submit" name="checkout" value="Proceed to Checkout"> -->
     </form>
      </div> 
@@ -76,32 +85,6 @@
   </div>
 </div>
     <!-- div for content aspect of page -->
-      <div id='content'>
-        
-        <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
-        
-          <!-- Identify your business so that you can collect the payments. -->
-          <input type="hidden" name="business" value="healthonthego@gmail.com">
-        
-          <!-- Specify a Buy Now button. -->
-          <input type="hidden" name="cmd" value="_xclick">
-        
-          <!-- Specify details about the item that buyers will purchase. -->
-          <input type="hidden" name="item_name" value="Premium Umbrella">
-          <input type="hidden" name="amount" value="50.00">
-          <input type="hidden" name="currency_code" value="USD">
-        
-          <!-- Prompt buyers to enter the quantities they want. -->
-          <input type="hidden" name="undefined_quantity" value="1">
-        
-          <!-- Display the payment button. -->
-          <input type="image" name="submit" border="0"
-            src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
-            alt="Buy Now">
-          <img alt="" border="0" width="1" height="1"
-            src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
-        
-        </form>
-        </body>
+     </body>
         </html>
         
