@@ -1,3 +1,11 @@
+
+
         <?php require_once("productFunctions.php");
-        viewDelivery();
+        echo "Ready";
+        viewReady();
+
+        echo "<br><br><br><br><br><br><br><br><br><br>";
+
+        echo "All";
+        viewAllDelivery();
         ?>
