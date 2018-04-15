@@ -1,4 +1,3 @@
-        <?php require_once("php/productFunctions.php");
+        <?php require_once("productFunctions.php");
         viewDelivery();
         ?>
-    

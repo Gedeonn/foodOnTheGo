@@ -2,14 +2,12 @@
 -- version 3.5.8.2
 -- http://www.phpmyadmin.net
 --
--- Host: sql212.epizy.com
--- Generation Time: Apr 15, 2018 at 12:37 PM
+-- Host: sql212.byetcluster.com
+-- Generation Time: Apr 15, 2018 at 12:42 PM
 -- Server version: 5.6.35-81.0
 -- PHP Version: 5.3.3
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT=0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -179,7 +177,6 @@ INSERT INTO `orders` (`food_name`, `order_number`, `quantity`, `status`, `custom
 ('Cheese -Tuna - Tomato Sandwich', 11, 1, 'processing', ''),
 ('Lean Chicken', 8, 1, 'processing', ''),
 ('Salad Noodles', 10, 1, 'processing', '');
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

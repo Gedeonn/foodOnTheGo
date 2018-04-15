@@ -31,10 +31,10 @@ function allproducts()
     <form method = "post">
       <div class="grid-item">
 <a href="views.php?image='.$row['image'].'&name='.$row['food_name']. '&duration='.$row['food_name']. '&price='.$row['price']. '&description='.$row['description']. '&id='.$row['id'].'"><img src="../'.$row['image'].'"></a><br>
- <a href="views.php?image='.$row['image']. '&duration='.$row['food_name']. '&name='.$row['food_name']. '&price='.$row['price']. '&description='.$row['description']. '&id='.$row['id']. '" >' .$row['food_name']. '</a><br>
+ï¿½<a href="views.php?image='.$row['image']. '&duration='.$row['food_name']. '&name='.$row['food_name']. '&price='.$row['price']. '&description='.$row['description']. '&id='.$row['id']. '" >' .$row['food_name']. '</a><br>
 
 '.'<p>GHS ' .$row['price'].'.00</p>'.'Â Â <br>
- <button value="'.$row['id'].'" name="cart">Add to Cart</button>
+ï¿½<button value="'.$row['id'].'" name="cart">Add to Cart</button>
 </div>
     </form>';
 }
@@ -203,7 +203,7 @@ function viewCart()
      <form method="POST">
      <div class = "cart-items">
      <tr>
-     
+
             <td><img class="card-img-top" style="width:75px; height:75px;"src="../'.$image.'" alt="Product Image"></td>
             <td>'.$title.'</td>
             <td><input name="number" type="number" value="'.$qty.'" min="1" max="100">
@@ -212,7 +212,7 @@ function viewCart()
             </form>
             <td>'.number_format($price,2).'</td>
             <td>'.number_format($totalprice,2).'</td>
-            <button name="order" class="btn btn-danger" value= '.$title.'>Order</button></td>
+            <td><button name="order" class="btn btn-danger" value= '.$title.'>Order</button></td>
             </tr>
             </div>';
 
@@ -373,95 +373,94 @@ function validatelogin()
   }
 }
 
-if($_SESSION['login'] == true && isset($_POST['order'])
-{
-    intoOrders();
-}
-
-function intoOrders()
-{
-    session_start();
-    $customername = $_SESSION['name'];
-    $email = $_SESSION['email'];
-    $quantity = $_POST['number'];
-    $foodname = $_POST['order'];
-    $status = "processing";
-    
-    if ($_SESSION['login'] == true)
-    {
-        $sql1 = "SELECT id FROM customers WHERE f_name = '$customername' AND email = '$email'";
-        $connect = new Connect;
-        
-        $run = $connect->query($sql1);
-        while ($results1 = $connect->fetch())
-        {
-            $customerid = $results1['id'];
-            
-            $sql2 = "INSERT INTO orders(food_name,quantity,status,customer) VALUES('$foodname','$quantity','$status','$customerid')";
-            
-            $connect2 = new Connect;
-            
-            $run2 = $connect2->query($sql2);
-            
-            if ($run2)
-            {
-                echo "Successfully ordered";
-            }
-            else 
-            {
-                echo "Problem while ordering";
-            }
-        }
-    }
-}
-
-function viewDelivery()
-{
-    $sql1 = "SELECT food_name,order_number,quantity,customer FROM orders WHERE status = \"ready\"";
-    
-    $connect = new Connect;
-    
-    $run = $connect->query($sql1);
-    
-    while ($results = $connect->fetch())
-    {
-        $id = $results['customer'];
-        
-        $sql2 = "SELECT f_name, l_name, phone_number FROM customers WHERE id = '$id";
-        
-        $connect2 = new Connect;
-        
-        $run2 = $connect2->query($sql2);
-        
-        while ($results2 = $connect2->fetch())
-        {
-        
-            $ordernum = $results2['order_number'];
-            
-            $sql3 = "SELECT physical_addr FROM oncheckout WHERE ordernumber = '$ordernum'";
-            
-            $connect3 = new Connect;
-            
-            $run3 = $connect3->query($sql3);
-            
-            echo "<table>";
-            echo "<tr><th>Order Number</th><th>Food Name</th><th>Quantity</th><th>Customer Name</th><th>Customer Phone Number</th><th>Delivery Address</th>";
-            
-            while ($results3 = $connect3->fetch())
-            {
-                echo "<tr>";
-                echo "<td>".$results['order_number']."</td>";
-                echo "<td>".$results['food_name']."</td>";
-                echo "<td>".$results['quantity']."</td>";
-                echo "<td>".$results2['f_name']." ".$results2['l_name']"</td>";
-                echo "<td>".$results2['phone_number']."</td>";
-                echo "<td>".$results3['physical_addr']."</td>";
-                echo "<td>"."<input type=\"submit\" value=\"Start Delivery\">"."</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-        }
-    }
-}
+// if($_SESSION['login'] == true && isset($_POST['order'])
+// {
+//     intoOrders();
+// }
+//
+// function intoOrders()
+// {
+//     session_start();
+//     $customername = $_SESSION['name'];
+//     $email = $_SESSION['email'];
+//     $quantity = $_POST['number'];
+//     $foodname = $_POST['order'];
+//     $status = "processing";
+//
+//     if ($_SESSION['login'] == true)
+//     {
+//         $sql1 = "SELECT id FROM customers WHERE f_name = '$customername' AND email = '$email'";
+//         $connect = new Connect;
+//
+//         $run = $connect->query($sql1);
+//         while ($results1 = $connect->fetch())
+//         {
+//             $customerid = $results1['id'];
+//
+//             $sql2 = "INSERT INTO orders(food_name,quantity,status,customer) VALUES('$foodname','$quantity','$status','$customerid')";
+//
+//             $connect2 = new Connect;
+//
+//             $run2 = $connect2->query($sql2);
+//
+//             if ($run2)
+//             {
+//                 echo "Successfully ordered";
+//             }
+//             else
+//             {
+//                 echo "Problem while ordering";
+//             }
+//         }
+//     }
+// }
+//
+// function viewDelivery()
+// {
+//     $sql1 = 'SELECT food_name,order_number,quantity,customer FROM orders WHERE status = "ready"';
+//
+//     $connect = new Connect;
+//
+//     $run = $connect->query($sql1);
+//
+//     while ($results = $connect->fetch())
+//     {
+//         $id = $results['customer'];
+//
+//         $sql2 = "SELECT f_name, l_name, phone_number FROM customers WHERE id = '$id";
+//
+//         $connect2 = new Connect;
+//
+//         $run2 = $connect2->query($sql2);
+//
+//         while ($results2 = $connect2->fetch())
+//         {
+//
+//             $ordernum = $results2['order_number'];
+//
+//             $sql3 = "SELECT physical_addr FROM oncheckout WHERE ordernumber = '$ordernum'";
+//
+//             $connect3 = new Connect;
+//
+//             $run3 = $connect3->query($sql3);
+//
+//             echo "<table>";
+//             echo "<tr><th>Order Number</th><th>Food Name</th><th>Quantity</th><th>Customer Name</th><th>Customer Phone Number</th><th>Delivery Address</th>";
+//
+//             while ($results3 = $connect3->fetch())
+//             {
+//                 echo "<tr>";
+//                 echo "<td>".$results['order_number']."</td>";
+//                 echo "<td>".$results['food_name']."</td>";
+//                 echo "<td>".$results['quantity']."</td>";
+//                 echo "<td>".$results2['f_name']." ".$results2['l_name']"</td>";
+//                 echo "<td>".$results2['phone_number']."</td>";
+//                 echo "<td>".$results3['physical_addr']."</td>";
+//                 echo "<td>"."<input type=\"submit\" value=\"Start Delivery\">"."</td>";
+//                 echo "</tr>";
+//             }
+//             echo "</table>";
+//         }
+//     }
+// }
 ?>
-	

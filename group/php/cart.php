@@ -36,8 +36,8 @@
       <div class="breadcrumbtext">
         <form method="POST">
           <?php
-         include('php/productFunctions.php');
-        
+         require_once('productFunctions.php');
+         num();
          ?>
           <!-- make shopping cart image a link -->
           <a href="cart.php"><img src="../images/shopping-cart.png" alt="Cart" width="25px" height="25px"></a>
@@ -87,6 +87,7 @@
           <th>Total Price</th>
           <th>Order</th>
           <!-- require php page with function that displays grid items  -->
+          <?php   viewCart(); ?>
         <!--</div>-->
         <tr>
           <td colspan="5" align="right">Total</td>

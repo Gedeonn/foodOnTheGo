@@ -53,12 +53,12 @@ $sql = "SELECT id,food_name,price,image,duration,ingredients,description FROM fo
       echo '
       <form method = "post">
         <div class="grid-item">
-   <a href="php/views.php?image='.$row['image'].'&name='.$row['food_name']. '&duration='.$row['food_name']. '&price='.$row['price']. '&description='.$row['description']. '&id='.$row['id'].'"><img src="../'.$row['image'].'"></a><br>
-   <a href="php/views.php?image='.$row['image']. '&duration='.$row['food_name']. '&name='.$row['food_name']. '&price='.$row['price']. '&description='.$row['description']. '&id='.$row['id']. '" >' .$row['food_name']. '</a><br>
+  ï¿½<a href="php/views.php?image='.$row['image'].'&name='.$row['food_name']. '&duration='.$row['food_name']. '&price='.$row['price']. '&description='.$row['description']. '&id='.$row['id'].'"><img src="../'.$row['image'].'"></a><br>
+  ï¿½<a href="php/views.php?image='.$row['image']. '&duration='.$row['food_name']. '&name='.$row['food_name']. '&price='.$row['price']. '&description='.$row['description']. '&id='.$row['id']. '" >' .$row['food_name']. '</a><br>
 
-   '.'<p>GHS ' .$row['price'].'.00</p>'.'Â Â <br>
-   <button value="'.$row['id'].'" name="cart">Add to Cart</button>
-   </div>
+  ï¿½'.'<p>GHS ' .$row['price'].'.00</p>'.'Â Â <br>
+  ï¿½<button value="'.$row['id'].'" name="cart">Add to Cart</button>
+  ï¿½</div>
       </form>';
     }
   }
@@ -72,7 +72,7 @@ $sql = "SELECT id,food_name,price,image,duration,ingredients,description FROM fo
 if (isset($_POST['cart']))
 {
   addtocart();
-addtoOrders();
+// addtoOrders();
 }
 
 function addtocart()
@@ -160,57 +160,57 @@ function num()
   }
 }
 
-function addtoOrders(){
-  $id = $_POST['cart'];
-  $ip = $_SERVER["REMOTE_ADDR"];
-  $qty = '1';
-  $status='processing';
-  $customer_name=$_SESSION['name'];
-  $food_name='';
-  $id2='';
-  $quantity='';
-
-
-  $sql1 = "SELECT foodId, ip_addr FROM cart WHERE foodId = '$id' AND ip_addr = '$ip'";
-
-  $login =  new Connect;
-
-  $run = $login->query($sql1);
-
-  $results = $login->fetch();
-
-  if ($results)
-  {
-    $login2 = new Connect;
-
-    $sql2 = "SELECT foodId, quantity FROM cart WHERE ip_addr = '$ip'";
-
-    $run2 = $login2->query($sql2);
-    while ($results = $login2->fetch())
-    {
-      $login3 = new Connect;
-      $id2 = $results['foodId'];
-      $quantity = $results['quantity'];
-
-      //getting the Price
-      $sql3 = "SELECT food_name FROM food WHERE id = '$id2'";
-
-      $run3 = $login3->query($sql3);
-
-      $results =  $login3->fetch();
-
-      $food_name = $results['food_name'];
-    }
-    //add to cart
-    $sql3 = "INSERT INTO orders(food_name, order_number, quantity,status,customer) VALUES ('$food_name', '$id2', '$quantity','$status','$customer_name')";
-
-    $run = $login->query($sql3);
-    echo 'Order added successfully';
-  }
-  else{
-    echo 'Eroor:failed to add order';
-  }
-
-}
+// function addtoOrders(){
+//   $id = $_POST['cart'];
+//   $ip = $_SERVER["REMOTE_ADDR"];
+//   $qty = '1';
+//   $status='processing';
+//   $customer_name=$_SESSION['name'];
+//   $food_name='';
+//   $id2='';
+//   $quantity='';
+//
+//
+//   $sql1 = "SELECT foodId, ip_addr FROM cart WHERE foodId = '$id' AND ip_addr = '$ip'";
+//
+//   $login =  new Connect;
+//
+//   $run = $login->query($sql1);
+//
+//   $results = $login->fetch();
+//
+//   if ($results)
+//   {
+//     $login2 = new Connect;
+//
+//     $sql2 = "SELECT foodId, quantity FROM cart WHERE ip_addr = '$ip'";
+//
+//     $run2 = $login2->query($sql2);
+//     while ($results = $login2->fetch())
+//     {
+//       $login3 = new Connect;
+//       $id2 = $results['foodId'];
+//       $quantity = $results['quantity'];
+//
+//       //getting the Price
+//       $sql3 = "SELECT food_name FROM food WHERE id = '$id2'";
+//
+//       $run3 = $login3->query($sql3);
+//
+//       $results =  $login3->fetch();
+//
+//       $food_name = $results['food_name'];
+//     }
+//     //add to cart
+//     $sql3 = "INSERT INTO orders(food_name, order_number, quantity,status,customer) VALUES ('$food_name', '$id2', '$quantity','$status','$customer_name')";
+//
+//     $run = $login->query($sql3);
+//     echo 'Order added successfully';
+//   }
+//   else{
+//     echo 'Error:failed to add order';
+//   }
+//
+// }
 
 ?>
