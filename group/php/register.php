@@ -88,7 +88,7 @@
   <!-- form to add product to database -->
   <form method="POST"  id="form" enctype="multipart/form-data">
     <!-- require php functions page that has the functions-->
-    
+    <?php require_once("productFunctions.php"); ?>
 
   <div class="form-group">
     <!-- image input type -->
@@ -125,8 +125,6 @@
   <button type="submit" class="btn btn-primary" name="registercustomer" onclick="return validate()">Register</button>
   <a href="login.php"><input type="button" class="btn btn-primary" value="Already a customer? Login"></a>
 </div>
-
-<?php include("productFunctions.php"); ?>
 </form>
 
 
