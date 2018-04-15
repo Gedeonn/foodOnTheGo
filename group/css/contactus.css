@@ -1,0 +1,176 @@
+body
+{
+  /* margin-auto: 50px; */
+  background-color: #ffddb3;
+}
+
+#header
+{
+  height:100px;
+  background-color: orange;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  text-align: center;
+}
+
+#menu{
+  background-color: ;
+  margin-bottom: 15px;
+  height: 50px;
+  text-align: center;
+}
+
+#sidebar
+{
+  height: inherit;
+  float: left;
+  width: 200px;
+  background-color: red;
+}
+
+#breadcrumb
+{
+  background-color: #e6ccff;
+  color: black;
+  width: 1040px;
+  float: right;
+  /* margin-top: 10px; */
+  margin-bottom: 15px;
+  height: 60px;
+  text-align: center;
+}
+
+#content
+{
+  background-color: black;
+  color: white;
+  width: 1040px;
+  height: inherit;
+  text-align: center;
+  float: right;
+}
+
+#floats
+{
+}
+
+#text
+{
+  padding-left: 1200px;
+}
+
+#footer
+{
+  margin-top: 500px;
+  height: 40px;
+  background-color: pink;
+  text-align: center;
+}
+
+.menu{
+  width: 100%;
+  display:block;
+  background:;
+  height: 100px;
+  margin: 10px 20px;
+
+}
+
+.menu ul li{
+  display: inline;
+  font-size: 100%;
+}
+
+.menu ul li a{
+  text-decoration: none;
+  color: black;
+  margin-top: 15px;
+  margin: 10px 20px;
+  padding: 10px;
+}
+
+.menu ul li a:hover{
+  background: #2d8659;
+  color: white;
+}
+
+.breadcrumb{
+  display: inline;
+  font-size: 100%;
+  margin: 0px, 15px, 30px, 15px;
+}
+
+.breadcrumbtext
+{
+  padding: 20px;
+}
+
+/* .breadcrumbcart
+{
+  display: inline;
+  margin-left: 40px;
+  margin-top: 40px;
+} */
+
+.breadcrumbtext a
+{
+  margin-left: 30px;
+}
+
+.breadcrumbtext img
+{
+  margin-left: 40px;
+}
+
+.grid-container {
+  display: grid;
+  grid-gap: 20px 50px; /* first is horizontal, next is vertical*/
+  grid-template-columns: auto auto auto;
+  background-color: ;
+  padding: 15px; /*container padding*/
+}
+.grid-item {
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 25px;
+  font-size: 30px;
+  text-align: right;
+  color: black;
+}
+
+.grid-item a{
+  font-size: 45%;
+}
+
+.grid-item p{
+  font-size: 55%;
+}
+
+.grid-item img{
+  float: left;
+  width: 100px;
+  height: 100px;
+}
+
+.sidebartext ul
+{
+  list-style-type: none;
+  align-items: start;
+}
+
+#top
+{
+  text-align: center;
+}
+
+.sidebartext ul li a
+{
+  color: white;
+}
+
+.sidebartext ul li a:hover
+{
+  background-color: #206040;
+  color: white;
+  padding: 10px;
+}
