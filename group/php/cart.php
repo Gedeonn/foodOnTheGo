@@ -42,7 +42,7 @@
           <!-- make shopping cart image a link -->
           <a href="cart.php"><img src="../images/shopping-cart.png" alt="Cart" width="25px" height="25px"></a>
           <a href="../index.php">Continue Shopping </a> &nbsp&nbsp&nbsp
-          <a href="checkout.php"><input type="submit" name="checkout" value="Proceed to Checkout" class="button"></a>
+          
         </form>
       </div>
     </div>

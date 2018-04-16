@@ -53,9 +53,7 @@ body
   position: relative;
 }
 
-#floats
-{
-}
+
 
 #footer
 {
@@ -251,4 +249,18 @@ footer
     font-size: 12px;
 }
 
+.titre{
+  font-size: 1.4em;
+  border: 1px solid black;
+  text-align: center;
+}
 
+.outer{
+  width: 60%;
+  border: 1px solid black;
+  border-radius: 20% 
+}
+
+.outer div{
+  font-size: 1.2em
+}

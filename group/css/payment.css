@@ -1,10 +1,28 @@
 .cart-items{
-    margin-top: 20%;
+    margin-top: 10%;
     margin-bottom: 20%;
     background-color: lightblue;
-    padding-top: 4%
+    border: 1px solid black;
+
+   
 }
 
-.card-img-top{
+.cart-items div {
+    float:left;
+    width: 20%;
+}
 
+
+
+.checkOut{
+    background-color: lightblue;
+}
+
+#header
+{
+  height:100px;
+  background-color: #4ECDC4;
+  margin-bottom: 15px;
+  margin-top: 25px;
+  text-align: center;
 }

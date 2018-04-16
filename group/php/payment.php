@@ -10,7 +10,7 @@ if (!isset($_SESSION['login'])) {
 <html>
 <header>
   <!-- include image -->
-  <img src="../images/banner.jpg" alt="Picture" width= "1278px" height= "300px">
+  <img src="../images/banner.png" alt="Picture" width= "1278px" height= "300px">
 </header>
 <head>
   <!-- include stylesheet -->
@@ -43,7 +43,7 @@ if (!isset($_SESSION['login'])) {
    <div id='breadcrumb'>
     <!-- div to position text in breadcrumb -->
     <div class="breadcrumbtext"> 
-       <form method="POST">
+       
       <?php
       require_once('productFunctions.php');
       num();
@@ -51,9 +51,33 @@ if (!isset($_SESSION['login'])) {
       <!-- make shopping cart image a link -->
        <a href="cart.php"><img src="../images/shopping-cart.png" alt="Cart" width="25px" height="25px"></a> 
        <a href="../index.php">Continue Shopping </a> &nbsp&nbsp&nbsp 
-       <?php viewCart1(); ?>
+       
+       <div class= "cart-items">
+            <div><img class="card-img-top" style="width:75px; height:75px;"src="../<?php echo $_GET['img']?>" alt="Product Image"> <br>
+            <?php echo $_GET['pTitle']?>
+            </div>
+            <div> <strong>Quantity:  </strong><?php echo $_GET['qty']?> </div>
+            
+            <div><strong>Price: </strong><?php echo $_GET['priceT']?></div>
+            <div><strong>Total price: </strong><?php echo $_GET['price']?></div>
+          <div>
+            <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+              <input type="hidden" name="business" value="healthonthego@gmail.com">
+              <input type="hidden" name="cmd" value="_xclick">
+              <input type="hidden" name="item_name" value="<?php echo $_GET['pTitle']?>">
+              <input type="hidden" name="amount" value="<?php echo $_GET['price']?>">
+              <input type="hidden" name="currency_code" value="USD">
+              <input type="image" name="submit" border="0"
+              src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+              alt="Buy Now">
+              <img alt="" border="0" width="1" height="1"
+              src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+            </form> 
+        </div>
+    </div>
+
       <!-- <input type="submit" name="checkout" value="Proceed to Checkout"> -->
-    </form>
+    
      </div> 
   </div> 
 
